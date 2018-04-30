@@ -17,11 +17,11 @@ namespace MiniUserRestApi.Controllers
         public UserController(UserContext context)
         {
             _context = context;
-            if (_context.Users.Count() == 0)
-            {
-                _context.Users.Add(new User { UserName = "Name1" });
-                _context.SaveChanges();
-            }
+            //if (_context.Users.Count() == 0)
+            //{
+            //    _context.Users.Add(new User { UserName = "Name1" });
+            //    _context.SaveChanges();
+            //}
         }
 
         // GET: api/<controller>
@@ -31,29 +31,41 @@ namespace MiniUserRestApi.Controllers
             return _context.Users.ToList();
         }
 
-        // GET api/<controller>/5
-        //[HttpGet("{id}")]
-        //public ActionResult<User> Get(int id)
-        //{
-        //    return "value";
-        //}
+        //GET api/<controller>/5
+        [HttpGet("{id}")]
+        public IActionResult GetUserById(int id)
+        {
+            User user = _context.Users.SingleOrDefault(x => x.Id == id);
+            if (user != null)
+            {
+                return new ObjectResult(user);
+            }
+            return new NotFoundResult();
+        }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void RegisterUser([FromBody]User user)
         {
+            if (user.UserEmail != null && user.UserName != null)
+            {
+                _context.Users.Add(user);
+                _context.SaveChanges();
+            }
         }
-
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
+     
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public bool DeleteUser(int id)
         {
+            User UserToRemove = _context.Users.SingleOrDefault(x => x.Id == id);
+            if (UserToRemove != null)
+            {
+                _context.Users.Remove(UserToRemove);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

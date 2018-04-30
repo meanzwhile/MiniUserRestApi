@@ -27,7 +27,15 @@ namespace MiniUserRestApi
         {
             services.AddMvc();
             var connection = @"Server=DESKTOP-2HGP57O\TESTINSTANCE;Database=MiniUser;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
+            try
+            {
+                services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
+            }
+            catch (Exception)
+            {
+                
+            }
+            //services.AddDbContext<UserContext>(options => options.UseInMemoryDatabase)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
