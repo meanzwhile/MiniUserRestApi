@@ -33,7 +33,7 @@ namespace MiniUserRestApi
             }
             catch (Exception)
             {
-                
+                    
             }
             //services.AddDbContext<UserContext>(options => options.UseInMemoryDatabase)
         }
@@ -46,7 +46,9 @@ namespace MiniUserRestApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseMvc();
+
         }
     }
 }
