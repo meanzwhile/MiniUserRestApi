@@ -19,20 +19,17 @@ namespace MiniUserRestApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //Your connection string to database
             var connection = @"Server=DESKTOP-2HGP57O\TESTINSTANCE;Database=MiniUser;Trusted_Connection=True;ConnectRetryCount=0";
 
             if (Utils.CheckDbConnection(connection))
             {
                 services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
-
             }
             else
             {
                 services.AddDbContext<UserContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
             }
-
-
-
             services.AddMvc();
         }
 
