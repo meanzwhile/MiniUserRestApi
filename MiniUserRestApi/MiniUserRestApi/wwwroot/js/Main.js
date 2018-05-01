@@ -1,9 +1,20 @@
-﻿$(document).ready(main);
+﻿var apiKey = prompt("Enter Your Api Key Here", "Yes here");
+
+$(document).ready(main);
 
 function main() {
     getAllUser();
+    homeButtonClickListener();
     registerButtonClickListener();
     registerUserClickListener();
+}
+
+function homeButtonClickListener() {
+    $("#homeButton").click(function () {
+        $("#registerPage").hide();
+        $("#allUser").show();
+        getAllUser();
+    });
 }
 
 function registerButtonClickListener() {
@@ -28,6 +39,7 @@ function registerUserClickListener() {
             url: '/api/User',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
+            headers: { 'x-api-key': apiKey },
             data: JSON.stringify(data),
             success: function () {
                 var alertBox = $("#alertSuccess");
@@ -59,6 +71,7 @@ function getAllUser() {
         type: 'GET',
         url: '/api/User',
         dataType: 'json',
+        headers: { 'x-api-key': apiKey },
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
             $("#userTable tbody tr").remove();
@@ -86,6 +99,7 @@ function deleteUserButtonHandler() {
         $.ajax({
             type: 'DELETE',
             url: '/api/User/' + this.id,
+            headers: { 'x-api-key': apiKey },
             success: function (result) {
                 var alertBox = $("#alertSuccess");
                 alertBox.fadeIn();
@@ -100,7 +114,6 @@ function deleteUserButtonHandler() {
                 closeAlertBox(alertBox);
             }
         })
-
         getAllUser();
     });
 }
