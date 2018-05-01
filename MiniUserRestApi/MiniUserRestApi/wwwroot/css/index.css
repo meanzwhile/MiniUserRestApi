@@ -2,8 +2,15 @@
 
 }
 .content{
-    margin-top:50px;
+    margin-top:60px;
 }
 #registerButton{
     vertical-align:central;
+}
+#registerPage{
+    display:none;
+}
+.alert{
+    display:none;
+    margin-top:60px;
 }
