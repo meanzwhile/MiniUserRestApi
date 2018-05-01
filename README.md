@@ -20,7 +20,7 @@ To run the project:
 
 -Build the project.
 
--Navigate in command prompt to the folder where the project is (eg: C:\SomeFolder\SomeOtherFolder\MiniUserRestApi)
+-Navigate in command prompt to the folder where the Project! is (eg: C:\SomeFolder\SomeOtherFolder\MiniUserRestApi\MiniUserRestApi)
  then run:
  
  dotnet ef database update
