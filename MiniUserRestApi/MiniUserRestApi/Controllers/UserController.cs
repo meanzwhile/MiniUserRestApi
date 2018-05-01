@@ -45,27 +45,29 @@ namespace MiniUserRestApi.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void RegisterUser([FromBody]User user)
+        public IActionResult RegisterUser([FromBody]User user)
         {
-            if (user.UserEmail != null && user.UserName != null)
+            if (user?.UserName != null && user?.UserEmail != null)
             {
                 _context.Users.Add(user);
                 _context.SaveChanges();
+                return new OkObjectResult(200);
             }
+            return new StatusCodeResult(418);
         }
      
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public bool DeleteUser(int id)
+        public IActionResult DeleteUser(int id)
         {
             User UserToRemove = _context.Users.SingleOrDefault(x => x.Id == id);
             if (UserToRemove != null)
             {
                 _context.Users.Remove(UserToRemove);
                 _context.SaveChanges();
-                return true;
+                return new OkObjectResult(200);
             }
-            return false;
+            return new StatusCodeResult(404);
         }
     }
 }
