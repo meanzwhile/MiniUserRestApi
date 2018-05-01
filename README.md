@@ -4,9 +4,13 @@ Mini api for storing and retreiving data about users.
 Api Secret key: SuperSecretKey1234
 
 Api endpoints:
+
   [GET]    api/user      -> get all users in an array
+  
   [GET]    api/user/{id} -> get specific user by its id
+  
   [POST]   api/user      -> create new record with data from the body
+  
   [DELETE] api/user/{id} -> delete user by its id
   
 
