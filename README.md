@@ -17,8 +17,14 @@ Api endpoints:
 To run the project:
 
 -In Startup.cs at the ConfigureServices() func, change the connection string for your server, and to the desired database.(Choose a Database name that not exists yet.)
+
 -Build the project.
+
 -Navigate in command prompt to the folder where the project is (eg: C:\SomeFolder\SomeOtherFolder\MiniUserRestApi)
- then run: dotnet ef database update
- this should create the db from the migration files.
+ then run:
+ 
+ dotnet ef database update
+ 
+ (this should create the db from the migration files)
+ 
 -The Project should run after these.
